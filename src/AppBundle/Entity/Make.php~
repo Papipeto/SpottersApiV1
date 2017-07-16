@@ -1,0 +1,35 @@
+<?php
+declare(strict_type=1);
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ */
+class Make
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @var Car[]
+     *
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="make")
+     */
+    private $cars;
+}

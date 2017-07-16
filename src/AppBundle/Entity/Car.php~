@@ -1,0 +1,56 @@
+<?php
+declare(strict_type=1);
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ */
+class Car
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="Make", inversedBy="cars")
+     */
+    private $make;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $model;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $variant;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $yearBuildStart;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $yearBuildEnd;
+}
