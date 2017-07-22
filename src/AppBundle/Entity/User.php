@@ -32,6 +32,7 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Groups({"user"})
      */
     protected $fullname;
@@ -45,6 +46,22 @@ class User extends BaseUser
      * @Groups({"user"})
      */
     protected $username;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @ORM\Column(type="datetime")
+     *
+     * @Groups({"user"})
+     */
+    private $creationDate;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->creationDate = new \DateTime();
+    }
 
     public function setFullname(string $fullname): self
     {
@@ -61,5 +78,10 @@ class User extends BaseUser
     public function isUser(UserInterface $user = null): bool
     {
         return $user instanceof self && $user->id === $this->id;
+    }
+
+    public function getCreationDate(): \DateTimeInterface
+    {
+        return $this->creationDate;
     }
 }
